@@ -16,6 +16,9 @@ abstract class AppTheme {
           return AppColors.mainColor;
         }),
         foregroundColor: WidgetStatePropertyAll(Colors.black),
+        textStyle: WidgetStatePropertyAll(
+          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
       ),
     ),
   );
