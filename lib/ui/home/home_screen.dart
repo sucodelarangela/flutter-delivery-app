@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/data/categories_data.dart';
+import 'package:flutter_delivery_app/data/restaurant_data.dart';
+import 'package:flutter_delivery_app/model/restaurant.dart';
 import 'package:flutter_delivery_app/ui/home/widgets/category_widget.dart';
+import 'package:flutter_delivery_app/ui/home/widgets/restaurant_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Acessando restaurantData através do Provider da main
+    RestaurantData restaurantData = Provider.of<RestaurantData>(context);
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -34,17 +41,27 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   spacing: 8,
-                  children: List.generate(Categories.categoriesList.length, (
-                    index,
-                  ) {
-                    return CategoryWidget(
-                      category: Categories.categoriesList[index],
-                    );
-                  }),
+                  children: List.generate(
+                    CategoriesData.categoriesList.length,
+                    (index) {
+                      return CategoryWidget(
+                        category: CategoriesData.categoriesList[index],
+                      );
+                    },
+                  ),
                 ),
               ),
               Image.asset('assets/banners/banner_promo.png'),
               Text("Bem avaliados"),
+              Column(
+                spacing: 16,
+                children: List.generate(restaurantData.restaurantList.length, (
+                  index,
+                ) {
+                  Restaurant restaurant = restaurantData.restaurantList[index];
+                  return RestaurantWidget(restaurant: restaurant);
+                }),
+              ),
               SizedBox(height: 64), // Espaçamento de rolagem
             ],
           ),

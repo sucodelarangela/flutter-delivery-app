@@ -1,4 +1,4 @@
-abstract class Categories {
+abstract class CategoriesData {
   static List<String> categoriesList = [
     'Petiscos',
     'Principais',
