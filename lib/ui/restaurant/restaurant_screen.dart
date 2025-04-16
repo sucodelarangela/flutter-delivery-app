@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery_app/model/dish.dart';
 import 'package:flutter_delivery_app/model/restaurant.dart';
 import 'package:flutter_delivery_app/ui/_core/app_colors.dart';
 
@@ -26,6 +27,18 @@ class RestaurantScreen extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: AppColors.lightOrange,
               ),
+            ),
+            Column(
+              children: List.generate(restaurant.dishes.length, (index) {
+                Dish dish = restaurant.dishes[index];
+                return ListTile(
+                  onTap: () {},
+                  leading: Image.asset('assets/dishes/default.png', width: 48),
+                  title: Text(dish.name),
+                  subtitle: Text('R\$ ${dish.price.toStringAsFixed(2)}'),
+                  trailing: IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                );
+              }),
             ),
           ],
         ),
