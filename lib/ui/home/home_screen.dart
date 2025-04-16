@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/data/categories_data.dart';
 import 'package:flutter_delivery_app/data/restaurant_data.dart';
 import 'package:flutter_delivery_app/model/restaurant.dart';
+import 'package:flutter_delivery_app/ui/_core/widgets/appbar.dart';
 import 'package:flutter_delivery_app/ui/home/widgets/category_widget.dart';
 import 'package:flutter_delivery_app/ui/home/widgets/restaurant_widget.dart';
 import 'package:provider/provider.dart';
@@ -15,16 +16,7 @@ class HomeScreen extends StatelessWidget {
     RestaurantData restaurantData = Provider.of<RestaurantData>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              // Ação do botão de pesquisa
-            },
-          ),
-        ],
-      ),
+      appBar: getAppBar(context: context),
       drawer: Drawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),

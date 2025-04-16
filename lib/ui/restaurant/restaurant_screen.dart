@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/model/dish.dart';
 import 'package:flutter_delivery_app/model/restaurant.dart';
 import 'package:flutter_delivery_app/ui/_core/app_colors.dart';
+import 'package:flutter_delivery_app/ui/_core/cart_provider.dart';
+import 'package:flutter_delivery_app/ui/_core/widgets/appbar.dart';
+import 'package:provider/provider.dart';
 
 class RestaurantScreen extends StatelessWidget {
   final Restaurant restaurant;
@@ -10,7 +13,7 @@ class RestaurantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(restaurant.name)),
+      appBar: getAppBar(context: context, title: restaurant.name),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
@@ -36,7 +39,13 @@ class RestaurantScreen extends StatelessWidget {
                   leading: Image.asset('assets/dishes/default.png', width: 48),
                   title: Text(dish.name),
                   subtitle: Text('R\$ ${dish.price.toStringAsFixed(2)}'),
-                  trailing: IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                  trailing: IconButton(
+                    onPressed: () {
+                      // Alterando o Provider
+                      context.read<CartProvider>().addAllDishes([dish]);
+                    },
+                    icon: Icon(Icons.add),
+                  ),
                 );
               }),
             ),
