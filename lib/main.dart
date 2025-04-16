@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/data/restaurant_data.dart';
-import 'package:flutter_delivery_app/model/restaurant.dart';
 import 'package:flutter_delivery_app/ui/_core/app_theme.dart';
 import 'package:flutter_delivery_app/ui/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
